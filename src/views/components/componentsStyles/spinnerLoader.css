@@ -1,0 +1,22 @@
+.spinner-loader{
+    background-color: rgba(15, 47, 87, 0.78);
+    position: absolute;
+    --card-lenght : 80vw;
+    width: var(--card-lenght);
+    left: calc((100vw - var(--card-lenght))/2);
+
+    text-align: center;
+    padding: 20vh 5vw;
+
+    color: white;
+
+    border-top: white 1px solid;
+    border-radius: 20px;
+    box-shadow: black 12px 12px 30px;
+
+    animation-name: cardUp;
+    animation-duration: 1s;
+
+
+}
+
