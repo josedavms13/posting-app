@@ -9,6 +9,8 @@ import Loading from "./views/Loading";
 import unIdleHeroku from "../services/unIdleHeroku";
 import POSTRequestToken from "../services/POSTRequestToken";
 import NonAuthToken from "./views/components/NonAuthToken";
+import POSTComment from "../services/POSTComment";
+import ThanksForCommenting from "./views/components/ThanksForCommenting";
 
 
 
@@ -57,10 +59,10 @@ function App() {
         }
     },[userData])
 
-    //endregion Authentication
 
 
 
+    //Invalid Token handling
     const [nonAuthTokenCard, setNonAuthTokenCard] = useState(false);
     const [nonAuthMode, setNonAuthMode] = useState(1);
 
@@ -80,11 +82,46 @@ function App() {
         },2000)
     }
 
-    //Get Auth
+
+    //endregion Authentication
+
+
+    //region Handle Form Submit
+
+
+    const [functionCompleted, setFunctionCompleted] = useState(false);
+
+    async function postComment(data){
+
+       await POSTComment(data);
+        setFunctionCompleted(true);
+
+    }
+
+    useEffect(()=>{
+        console.log('functionCompleted ', functionCompleted);
+        if(functionCompleted){
+            commentPosted();
+        }
+    },[functionCompleted])
+
+    const [successfulComment, setSuccessfulComment] = useState(false);
+    function commentPosted() {
+        setIsUserAuth(false);
+        setSuccessfulComment(true);
+        setTimeout(()=>{
+            setSuccessfulComment(false);
+            setFunctionCompleted(false);
+            },2000)
+
+    }
+
+    //endregion Handle Form Submit
 
 
     return (
       <div className={'app'}>
+          {successfulComment && <ThanksForCommenting/>}
           {nonAuthTokenCard &&<NonAuthToken mode={nonAuthMode}/>}
           {!isIdleFinished && <Loading />}
           {isIdleFinished && <div className="app-container">
@@ -92,7 +129,7 @@ function App() {
               <Welcome continueHandling={(token) => {
                   authUser(token)
               }}/>
-              {isUserAuth && <PostPage userData={userData}/>}
+              {isUserAuth && <PostPage userData={userData} handleFormSubmit={(data)=>postComment(data)}/>}
           </div>}
       </div>
 

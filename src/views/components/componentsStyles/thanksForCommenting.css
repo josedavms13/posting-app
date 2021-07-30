@@ -1,0 +1,21 @@
+.thanks-for-commenting{
+    background-color: rgba(68, 147, 108, 0.81);
+    backdrop-filter: blur(21px);
+    position: absolute;
+    --card-lenght: 60vw;
+
+    width: var(--card-lenght);
+    height: 30vh;
+
+    top: 20vh;
+    left: calc((100vw - var(--card-lenght))/2);
+
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+
+    border-radius: 20px;
+    color: white;
+}

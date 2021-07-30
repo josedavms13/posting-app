@@ -3,10 +3,9 @@ import './viewsStyles/postPageStyles.css'
 import {useForm} from "react-hook-form";
 
 import nameUpperCasing from "../utilities/nameUpperCasing";
-import POSTComment from "../../services/POSTComment";
 
 
-function PostPage({userData}) {
+function PostPage({userData, handleFormSubmit}) {
 
     const {handleSubmit, register} = useForm();
 
@@ -18,8 +17,8 @@ function PostPage({userData}) {
             comment : values,
         }
 
-        POSTComment(dataToPost);
 
+        handleFormSubmit(dataToPost);
 
     }
 
@@ -33,27 +32,32 @@ function PostPage({userData}) {
                 <div className="user-name form-field input-group">
 
                     <label className={'form-label'}>Ingresa tu Nombre *</label>
-                    <input required={true}  type={'text'} {...register('userName')}/>
+                    <input required={true}  type={'text'} {...register('author')}/>
                 </div>
 
                 <div className="user-position form-field input-group">
                     <label className={'form-label'}>Ingresa tu cargo o posición</label>
-                    <input type={'text'} {...register('userPosition')}/>
+                    <input type={'text'} {...register('position')}/>
                 </div>
 
                 <div className="user-relation form-field input-group">
                     <label className={'form-label'}>¿Qué relacion que tienes conmigo? *</label>
-                    <input required={true} type={'text'} {...register('userRelation')}/>
+                    <input required={true} type={'text'} {...register('relation')}/>
+                </div>
+
+               <div className="user-relation form-field input-group">
+                    <label className={'form-label'}>¿De que país eres? *</label>
+                    <input required={true} type={'text'} {...register('country')}/>
                 </div>
 
                 <div className="user-comment form-field input-group">
                     <label className={'form-label'}>Ingresa tu comentario *</label>
-                    <input required={true} type={'text'} {...register('userComment')}/>
+                    <input required={true} type={'text'} {...register('comment')}/>
                 </div>
 
-                <div className="user-comment form-field input-group">
+                <div className="user-rate form-field input-group">
                     <label className={'form-label'}>De 1 a 5 como calificarías mi trabajo</label>
-                    <input min={1} max={5} type={'number'} {...register('userRate')}/>
+                    <input min={1} max={5} type={'number'} {...register('rate')}/>
                 </div>
                 <div className="submit">
                     <button type={"submit"}>Submit</button>
