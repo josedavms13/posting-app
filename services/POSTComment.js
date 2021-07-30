@@ -5,7 +5,7 @@ import DELETEToken from "./DELETEToken";
 
 function POSTComment(data){
 
-    const DELETE_TOKEN = false;
+    const DELETE_TOKEN = true;
 
     console.log('DELETE TOKEN = ', DELETE_TOKEN);
 
