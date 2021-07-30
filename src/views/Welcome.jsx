@@ -5,7 +5,6 @@ import Button from "react-bootstrap/Button";
 import {InputGroup} from "react-bootstrap";
 import {FormControl} from "react-bootstrap";
 import {Form} from "react-bootstrap";
-import authProvider from "../provider/authProvider";
 
 
 function Welcome({continueHandling}) {
@@ -27,8 +26,7 @@ function Welcome({continueHandling}) {
     },[tokenValue])
 
     function continueClickButton(){
-        continueHandling(authProvider(tokenValue));
-
+        continueHandling(tokenValue);
     }
 
     return (

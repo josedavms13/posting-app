@@ -2,15 +2,17 @@ import React, {useEffect, useState} from 'react'
 
 import Welcome from "./views/Welcome";
 import 'bootstrap/dist/css/bootstrap.min.css'
-
+// import './views/viewsStyles/appStyles.css'
 
 import PostPage from "./views/PostPage";
 import Loading from "./views/Loading";
 import unIdleHeroku from "../services/unIdleHeroku";
+import POSTRequestToken from "../services/POSTRequestToken";
 
 
 function App() {
 
+    //region Un idle server
     useEffect(()=>{
         unIdleHeroku()
             .then(res => {
@@ -21,12 +23,26 @@ function App() {
     },[])
 
     const [isIdleFinished, setIsIdleFinished] = useState(false);
+    //endregion Un idle server
+
+    const [userData, setUserData] = useState(null);
+    function authUser(token){
+        POSTRequestToken(token)
+            .then(data => setUserData(data.data));
+    }
+
+
 
     const [isUserAuth, setIsUserAuth] = useState(false);
 
-
-
-    const [userData, setUserData] = useState(null);
+    useEffect(()=>{
+        if(userData){
+            console.log(userData);
+            if(userData.isAuth){
+                setIsUserAuth(true)
+            }
+        }
+    },[userData])
 
     //Get Auth
 
@@ -37,7 +53,7 @@ function App() {
           {isIdleFinished && <div className="app-container">
 
               <Welcome continueHandling={(token) => {
-                  continueButton(token)
+                  authUser(token)
               }}/>
               {isUserAuth && <PostPage userData={userData}/>}
           </div>}
