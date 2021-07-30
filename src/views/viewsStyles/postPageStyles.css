@@ -1,6 +1,36 @@
 .post-page{
+    box-sizing: border-box;
     width: 100vw;
     height: 100vh;
 
     background-color: #1e85b4;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.post-page h1{
+    font-size: 5rem;
+}
+
+.post-page h2{
+    font-size: 3rem;
+}
+.post-page form{
+    background-color: red;
+    font-size: 1.5rem;
+
+}
+
+.form-field{
+    display: flex;
+    flex-direction: column;
+    margin: 6px;
+    /*width: 70%;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
 }
