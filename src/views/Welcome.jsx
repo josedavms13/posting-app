@@ -38,7 +38,7 @@ function Welcome({continueHandling}) {
                 <Form.Label htmlFor="basic-url">Inserta tu código</Form.Label>
                 <InputGroup className="mb-3">
 
-                    <FormControl className={'form-control'} id="basic-url" aria-describedby="basic-addon3" onChange={(e)=>{SetTokenValue(e.target.value)}}/>
+                    <FormControl aria-autocomplete={'off'} className={'form-control'} id="basic-url" aria-describedby="basic-addon3" onChange={(e)=>{SetTokenValue(e.target.value)}}/>
                 </InputGroup>
             </form>
 
