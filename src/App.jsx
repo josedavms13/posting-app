@@ -42,6 +42,7 @@ function App() {
 
     //auth user
     const [isUserAuth, setIsUserAuth] = useState(false);
+    const [welcomePage, setWelcomePage] = useState(true);
     useEffect(()=>{
         if(userData){
             console.log(userData);
@@ -51,7 +52,9 @@ function App() {
             if(auth !== undefined || true){
 
                 if(auth){
-                    setIsUserAuth(true)
+                    setIsUserAuth(true);
+                    setWelcomePage(false);
+
                 }else{
                     nonAuthToken();
                 }
@@ -112,6 +115,7 @@ function App() {
         setTimeout(()=>{
             setSuccessfulComment(false);
             setFunctionCompleted(false);
+            setWelcomePage(true);
             },2000)
 
     }
@@ -126,9 +130,9 @@ function App() {
           {!isIdleFinished && <Loading />}
           {isIdleFinished && <div className="app-container">
 
-              <Welcome continueHandling={(token) => {
+              {welcomePage && <Welcome continueHandling={(token) => {
                   authUser(token)
-              }}/>
+              }}/>}
               {isUserAuth && <PostPage userData={userData} handleFormSubmit={(data)=>postComment(data)}/>}
           </div>}
       </div>

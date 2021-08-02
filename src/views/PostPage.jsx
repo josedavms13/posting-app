@@ -24,7 +24,7 @@ function PostPage({userData, handleFormSubmit}) {
 
     return (
         <div className={'post-page'}>
-            <div className="greetings-section">
+            <div className="greetings-section" id={'Greetings-Section'}>
                 <h1>Hola { nameUpperCasing(userData.name) }</h1>
                 <h2>Gracias por querer comentar!</h2>
             </div>
